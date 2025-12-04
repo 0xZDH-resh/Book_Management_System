@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Book Management System</h1>
+
+  <h2>Check Book Availability</h2>
+  <input type="text" [(ngModel)]="search" (input)="searchBooks()" placeholder="Search book by title..." />
+  <button (click)="searchBooks()">Search</button>
+  <p>{{ message }}</p>
+
+
+
+
+  <form (ngSubmit)="addBook()">
+    <input type="text" [(ngModel)]="title" name="title" placeholder="Book Title" required />
+    <input type="text" [(ngModel)]="author" name="author" placeholder="Author" required />
+    <input type="number" [(ngModel)]="year" name="year" placeholder="Year" required />
+    <button type="submit">Add Book</button>
+  </form>
+
+  <h2>Book List</h2>
+  <table *ngIf="filteredBooks.length > 0">
+  <tbody>
+    <tr *ngFor="let book of filteredBooks; index as i">
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.year }}</td>
+      <td><button (click)="deleteBook(i)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
